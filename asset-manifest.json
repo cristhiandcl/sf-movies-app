@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sf-movies-app/static/css/main.c76319de.css",
+    "main.js": "/sf-movies-app/static/js/main.77a22a1e.js",
+    "static/js/787.5b2c7259.chunk.js": "/sf-movies-app/static/js/787.5b2c7259.chunk.js",
+    "index.html": "/sf-movies-app/index.html",
+    "main.c76319de.css.map": "/sf-movies-app/static/css/main.c76319de.css.map",
+    "main.77a22a1e.js.map": "/sf-movies-app/static/js/main.77a22a1e.js.map",
+    "787.5b2c7259.chunk.js.map": "/sf-movies-app/static/js/787.5b2c7259.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c76319de.css",
+    "static/js/main.77a22a1e.js"
+  ]
+}
