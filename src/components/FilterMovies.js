@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { Hint } from "react-autocomplete-hint";
 
-function FilterMovies({ setCoordinates, getCoordinates, movies }) {
+function FilterMovies({ setCoordinates, coordinates, getCoordinates, movies }) {
   // controlled form
   const [movieName, setMovieName] = useState("");
 
   const handleChange = (event) => {
     event.target.name === "movieName" &&
       setMovieName(event.target.value.toLowerCase());
+    // event.target.value === "" && setCoordinates([]);
+    // event.target.value === "" &&
+    //   movies.map((movie) =>
+    //     getCoordinates(
+    //       movie.locations,
+    //       movie.title,
+    //       movie.release_year,
+    //       movie.director,
+    //       movie.writer
+    //     )
+    //   );
   };
   //
 
   // Get movies title
-  const movieTitles = movies.map((movie) => movie.title);
+  const movieTitles = coordinates.map((movie) => movie.title);
   //
 
   // Location Selected Filter
@@ -28,8 +39,15 @@ function FilterMovies({ setCoordinates, getCoordinates, movies }) {
 
   //Filter reset
   const clearMap = () => {
-    setCoordinates([]);
-    movies.map((movie) => getCoordinates(movie.locations, movie.title));
+    movies.map((movie) =>
+      getCoordinates(
+        movie.locations,
+        movie.title,
+        movie.release_year,
+        movie.director,
+        movie.writer
+      )
+    );
     setMovieName("");
   };
   //
@@ -80,6 +98,10 @@ function FilterMovies({ setCoordinates, getCoordinates, movies }) {
             Clear filter
           </button>
         </div>
+        <p className="font-bold text-center text-xs pt-4 w-3/4">
+          Note: Do not forget to clear the filter out if you want to search for
+          a new movie.
+        </p>
       </div>
     </form>
   );

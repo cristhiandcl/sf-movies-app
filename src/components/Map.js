@@ -36,8 +36,8 @@ function Map({ movies, setMovies }) {
   //
 
   // Fetch all Movies' Coordinates
+  // setCoordinates([]);
   useEffect(() => {
-    setCoordinates([]);
     movies.map((movie) =>
       getCoordinates(
         movie.locations,
@@ -50,25 +50,26 @@ function Map({ movies, setMovies }) {
   }, [movies]);
 
   async function getCoordinates(address, title, releaseYear, director, writer) {
-    let location = await fetch(
+    const location = await fetch(
       "https://maps.googleapis.com/maps/api/geocode/json?address=" +
         address +
-        "&key=AIzaSyBE-oM93Dep_q4LELh3JReYEvidALWyNz0"
+        "&key=AIzaSyC11_8Fp_MjsAkB-kWb2tTODKjnlwbj7K8"
     );
-    let data = await location.json();
-    let coordinate = data.results[0].geometry;
-    setCoordinates((prevCoordinate) => [
-      ...prevCoordinate,
-      coordinate !== undefined && {
-        location: coordinate.location,
-        key: nanoid(),
-        title,
-        address,
-        releaseYear,
-        director,
-        writer,
-      },
-    ]);
+    const data = await location.json();
+    const coordinate = data.results.length > 0 && data.results[0].geometry;
+    data.results.length > 0 &&
+      setCoordinates((prevCoordinate) => [
+        ...prevCoordinate,
+        coordinate !== undefined && {
+          location: coordinate.location,
+          key: nanoid(),
+          title,
+          address,
+          releaseYear,
+          director,
+          writer,
+        },
+      ]);
   }
   //
 
